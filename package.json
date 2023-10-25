@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "scripts": {
     "test": "jest",
-    "build": "npm run eslint . && prettier -c . && mkdir -p dist && cp -v src/index.js dist/",
+    "build": "npm run eslint . && prettier -c . && jest && mkdir -p dist && cp -v src/index.js dist/",
     "eslint": "eslint --ignore-path=.gitignore",
     "efix": "npm run eslint -- --fix .",
     "prettier": "prettier --write ."
@@ -86,11 +86,13 @@
     "singleQuote": true
   },
   "devDependencies": {
+    "@types/jest": "^29.5.6",
     "eslint": "^8.52.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-jest": "^27.4.3",
     "eslint-plugin-prettier": "^5.0.1",
+    "jest": "^29.7.0",
     "prettier": "^3.0.3"
   }
 }
