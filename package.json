@@ -1,0 +1,95 @@
+{
+  "name": "flat-memoize",
+  "version": "1.0.0",
+  "description": "Memoizes functions with named arguments",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "eslint": "eslint --ignore-path=.gitignore",
+    "efix": "npm run eslint -- --fix .",
+    "prettier": "prettier --write ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tourman/flat-memoize.git"
+  },
+  "keywords": [
+    "memoize",
+    "memoization"
+  ],
+  "author": "tourman",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tourman/flat-memoize/issues"
+  },
+  "homepage": "https://github.com/tourman/flat-memoize#readme",
+  "eslintConfig": {
+    "parserOptions": {
+      "ecmaVersion": 2020
+    },
+    "root": true,
+    "extends": [
+      "airbnb-base",
+      "prettier"
+    ],
+    "env": {
+      "es2020": true,
+      "jest/globals": true
+    },
+    "plugins": [
+      "jest"
+    ],
+    "rules": {
+      "prefer-arrow-callback": 1,
+      "max-len": 1,
+      "no-plusplus": 0,
+      "import/no-extraneous-dependencies": [
+        "error",
+        {
+          "devDependencies": [
+            "**/*.test.js"
+          ]
+        }
+      ],
+      "no-param-reassign": [
+        "error",
+        {
+          "props": true,
+          "ignorePropertyModificationsFor": [
+            "draft"
+          ]
+        }
+      ],
+      "no-restricted-syntax": [
+        "error",
+        {
+          "selector": "ForInStatement",
+          "message": "for..in loops iterate over the entire prototype chain, which is virtually never what you want. Use Object.{keys,values,entries}, and iterate over the resulting array."
+        },
+        {
+          "selector": "LabeledStatement",
+          "message": "Labels are a form of GOTO; using them makes code confusing and hard to maintain and understand."
+        },
+        {
+          "selector": "WithStatement",
+          "message": "`with` is disallowed in strict mode because it makes code impossible to predict and optimize."
+        }
+      ]
+    }
+  },
+  "prettier": {
+    "trailingComma": "all",
+    "tabWidth": 2,
+    "semi": false,
+    "quoteProps": "consistent",
+    "singleQuote": true
+  },
+  "devDependencies": {
+    "eslint": "^8.52.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-jest": "^27.4.3",
+    "eslint-plugin-prettier": "^5.0.1",
+    "prettier": "^3.0.3"
+  }
+}
