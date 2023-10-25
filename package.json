@@ -2,9 +2,10 @@
   "name": "flat-memoize",
   "version": "1.0.0",
   "description": "Memoizes functions with named arguments",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
     "test": "jest",
+    "build": "npm run eslint . && prettier -c . && mkdir -p dist && cp -v src/index.js dist/",
     "eslint": "eslint --ignore-path=.gitignore",
     "efix": "npm run eslint -- --fix .",
     "prettier": "prettier --write ."
