@@ -1,0 +1,24 @@
+# https://github.com/microsoft/pict
+length:                0, 1, 3
+new-order:             same, shuffle
+length-diff:           one-more, same, one-less, change-one
+new-argument-position: first, same, last
+new-argument-type:     undefined, objectLike, primitive
+new-argument-equality: same, another
+
+if [length] = 0 then
+  [new-order] = "same" and
+  [length-diff] <> "one-less" and
+  [length-diff] <> "change-one";
+
+if [length] = 0 and [length-diff] = "one-more" then
+  [new-argument-position] = "first" and
+  [new-argument-equality] = "another";
+
+if [length-diff] = "same" or [length-diff] = "one-less" then
+  [new-argument-position] = "same" and
+  [new-argument-type] = "undefined" and
+  [new-argument-equality] = "same";
+
+if [length] = 1 and [length-diff] = "one-less" then
+  [new-order] = "same";

@@ -6,8 +6,8 @@ module.exports = function memoize(fn) {
     const keys = Object.keys(args).sort()
     const token = JSON.stringify(keys)
     cache[token] = cache[token] || {}
-    let acc = cache
-    let broken = false
+    let acc = cache[token]
+    let broken = !keys.length
     for (const key of keys) {
       const arg = args[key]
       const type =
@@ -28,7 +28,7 @@ module.exports = function memoize(fn) {
       return acc
     }
     const result = fn(args)
-    acc = cache
+    acc = cache[token]
     for (let index = 0; index < keys.length; index++) {
       const isLast = index === keys.length - 1
       const key = keys[index]

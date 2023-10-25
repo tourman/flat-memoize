@@ -1,14 +1,5 @@
 const memoize = require('.')
 
-/**
- * Criteria yet to be combined and tested
- * - num of arguments: 0, 1, 3
- * - key order: same, shuffle
- * - second call arguments: -1, 0, +1, ±1
- * - new argument sorted position: before all, same, after all
- * - new argument type: undefined, objectLike, primitive
- * - new argument equality: same, another
- */
 describe('memoize', () => {
   function arrange() {
     const fn = jest.fn((args) => args)
