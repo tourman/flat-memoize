@@ -3,3 +3,4 @@ length	new-order	length-diff	new-argument-position	new-argument-type	new-argumen
 1	same	one-less	same	undefined	same
 1	shuffle	one-more	first	objectLike	another
 0	same	same	same	undefined	same
+3	shuffle	change-one	first	primitive	same
