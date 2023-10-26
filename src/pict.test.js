@@ -27,7 +27,7 @@ describe('memoize', () => {
     })
     it('should return the same result', () => {
       const { a, b } = arrangeAndAct()
-      expect(a).toBe(b)
+      expect(b).toBe(a)
     })
     it('should have the same result for the call', () => {
       const { a, fn } = arrangeAndAct()
@@ -49,7 +49,7 @@ describe('memoize', () => {
     })
     it('should return another result', () => {
       const { a, b } = arrangeAndAct()
-      expect(a).not.toBe(b)
+      expect(b).not.toBe(a)
     })
     it('should have the same result for the first call', () => {
       const { a, fn } = arrangeAndAct()
@@ -84,6 +84,27 @@ describe('memoize', () => {
     it('should have the same result for the second call', () => {
       const { b, fn } = arrangeAndAct()
       expect(b).toBe(fn.mock.results[1].value)
+    })
+  })
+  describe('3   0       same       same         same                   undefined          same', () => {
+    function arrangeAndAct() {
+      const fn = jest.fn((args) => args)
+      const memoized = memoize(fn)
+      const a = memoized({})
+      const b = memoized({})
+      return { fn, a, b }
+    }
+    it('should be called once', () => {
+      const { fn } = arrangeAndAct()
+      expect(fn).toHaveBeenCalledTimes(1)
+    })
+    it('should return the same result', () => {
+      const { a, b } = arrangeAndAct()
+      expect(a).toBe(b)
+    })
+    it('should have the same result for the call', () => {
+      const { a, fn } = arrangeAndAct()
+      expect(a).toBe(fn.mock.results[0].value)
     })
   })
 })
