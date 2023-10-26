@@ -90,5 +90,52 @@ describe('memoize', () => {
         })
       })
     })
+    describe('exception', () => {
+      describe('thrown', () => {
+        function arrangeAndAct() {
+          const fn = jest.fn(() => {
+            throw new Error('Thrown')
+          })
+          const memoized = memoize(fn)
+          const errors = []
+          try {
+            memoized({})
+          } catch (error) {
+            errors.push(error)
+          }
+          try {
+            memoized({})
+          } catch (error) {
+            errors.push(error)
+          }
+          return { fn, errors }
+        }
+        it('should be called once', () => {
+          const { fn } = arrangeAndAct()
+          expect(fn).toHaveBeenCalledTimes(1)
+        })
+        it('should throw same exception', () => {
+          const { errors } = arrangeAndAct()
+          expect(errors[1]).toBe(errors[0])
+        })
+      })
+      describe('returned', () => {
+        function arrangeAndAct() {
+          const fn = jest.fn(() => new Error('Returned'))
+          const memoized = memoize(fn)
+          const a = memoized({})
+          const b = memoized({})
+          return { fn, a, b }
+        }
+        it('should be called once', () => {
+          const { fn } = arrangeAndAct()
+          expect(fn).toHaveBeenCalledTimes(1)
+        })
+        it('should return the same result', () => {
+          const { a, b } = arrangeAndAct()
+          expect(b).toBe(a)
+        })
+      })
+    })
   })
 })
