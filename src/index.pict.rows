@@ -7,3 +7,12 @@ length	new-order	length-diff	new-argument-position	new-argument-type	new-argumen
 1	same	change-one	same	primitive	another
 3	same	one-more	last	objectLike	same
 3	shuffle	one-more	last	undefined	another
+1	shuffle	one-more	last	primitive	another
+3	shuffle	one-less	same	undefined	same
+1	same	same	same	undefined	same
+3	shuffle	change-one	same	objectLike	another
+0	same	one-more	first	objectLike	another
+3	shuffle	change-one	last	undefined	same
+3	shuffle	one-more	first	undefined	same
+3	shuffle	same	same	undefined	same
+0	same	one-more	first	primitive	another

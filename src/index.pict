@@ -28,3 +28,6 @@ if [length] = 1 and [length-diff] <> "one-more" then
 
 if [length-diff] = "one-more" then
   [new-argument-position] <> "same";
+
+if [new-argument-type] = "undefined" then
+  [new-argument-equality] = "same";

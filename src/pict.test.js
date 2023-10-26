@@ -125,4 +125,87 @@ describe('memoize', () => {
       return { fn, a, b }
     })
   })
+  describe('8   1       shuffle    one-more     last                   primitive          another', () => {
+    testTwoCalls(function arrangeAndAct() {
+      const fn = jest.fn((args) => args)
+      const memoized = memoize(fn)
+      const f = () => {}
+      const a = memoized({ f })
+      const b = memoized({ f, s: '-' })
+      return { fn, a, b }
+    })
+  })
+  describe('9   3       shuffle    one-less     same                   undefined          same', () => {
+    testTwoCalls(function arrangeAndAct() {
+      const fn = jest.fn((args) => args)
+      const memoized = memoize(fn)
+      const f = () => {}
+      const s = Symbol('s')
+      const a = memoized({ f, s, u: undefined })
+      const b = memoized({ s, f })
+      return { fn, a, b }
+    })
+  })
+  describe('10  1       same       same         same                   undefined          same', () => {
+    testOneCall(function arrangeAndAct() {
+      const fn = jest.fn((args) => args)
+      const memoized = memoize(fn)
+      const a = memoized({ u: undefined })
+      const b = memoized({ u: undefined })
+      return { fn, a, b }
+    })
+  })
+  describe('11  3       shuffle    change-one   same                   objectLike         another', () => {
+    testTwoCalls(function arrangeAndAct() {
+      const fn = jest.fn((args) => args)
+      const memoized = memoize(fn)
+      const o = []
+      const n = 1
+      const a = memoized({ o, f: () => {}, n })
+      const b = memoized({ n, f: () => {}, o })
+      return { fn, a, b }
+    })
+  })
+  describe('12  0       same       one-more     first                  objectLike         another', () => {
+    testTwoCalls(function arrangeAndAct() {
+      const fn = jest.fn((args) => args)
+      const memoized = memoize(fn)
+      const a = memoized({})
+      const b = memoized({ o: [] })
+      return { fn, a, b }
+    })
+  })
+  describe('13  3       shuffle    one-more     first                  undefined          same', () => {
+    testTwoCalls(function arrangeAndAct() {
+      const fn = jest.fn((args) => args)
+      const memoized = memoize(fn)
+      const o = {}
+      const f = () => {}
+      const n = null
+      const a = memoized({ o, f, n })
+      const b = memoized({ u: undefined, f, o, n })
+      return { fn, a, b }
+    })
+  })
+  describe('14  3       shuffle    same         same                   undefined          same', () => {
+    testOneCall(function arrangeAndAct() {
+      const fn = jest.fn((args) => args)
+      const memoized = memoize(fn)
+      const o = {}
+      const n = null
+      const u = undefined
+      const a = memoized({ o, u, n })
+      const b = memoized({ n, u, o })
+      return { fn, a, b }
+    })
+  })
+  describe('15  0       same       one-more     first                  primitive          another', () => {
+    testTwoCalls(function arrangeAndAct() {
+      const fn = jest.fn((args) => args)
+      const memoized = memoize(fn)
+      const a = memoized({})
+      const b = memoized({ n: null })
+      return { fn, a, b }
+    })
+  })
 })
