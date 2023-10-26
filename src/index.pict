@@ -22,3 +22,6 @@ if [length-diff] = "same" or [length-diff] = "one-less" then
 
 if [length] = 1 and [length-diff] = "one-less" then
   [new-order] = "same";
+
+if [length] = 1 and [length-diff] <> "one-more" then
+  [new-order] = "same";

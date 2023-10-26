@@ -60,4 +60,30 @@ describe('memoize', () => {
       expect(b).toBe(fn.mock.results[1].value)
     })
   })
+  describe('2   1       shuffle    one-more     first                  objectLike         another', () => {
+    function arrangeAndAct() {
+      const fn = jest.fn((args) => args)
+      const memoized = memoize(fn)
+      const args = { n: 1 }
+      const a = memoized({ ...args })
+      const b = memoized({ o: () => {}, ...args })
+      return { fn, a, b }
+    }
+    it('should be called twice', () => {
+      const { fn } = arrangeAndAct()
+      expect(fn).toHaveBeenCalledTimes(2)
+    })
+    it('should return another result', () => {
+      const { a, b } = arrangeAndAct()
+      expect(a).not.toBe(b)
+    })
+    it('should have the same result for the first call', () => {
+      const { a, fn } = arrangeAndAct()
+      expect(a).toBe(fn.mock.results[0].value)
+    })
+    it('should have the same result for the second call', () => {
+      const { b, fn } = arrangeAndAct()
+      expect(b).toBe(fn.mock.results[1].value)
+    })
+  })
 })

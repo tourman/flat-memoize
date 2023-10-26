@@ -1,3 +1,4 @@
 length	new-order	length-diff	new-argument-position	new-argument-type	new-argument-equality
 3	same	same	same	undefined	same
 1	same	one-less	same	undefined	same
+1	shuffle	one-more	first	objectLike	another
