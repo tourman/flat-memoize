@@ -79,3 +79,16 @@ describe('memoize', () => {
     })
   })
 })
+
+describe('memoize', () => {
+  describe('error flow', () => {
+    describe('wrong argument', () => {
+      describe.each([undefined, null, 3, 'string', Symbol('s')])('%p', () => {
+        it('should throw', () => {
+          const memoized = memoize(() => {})
+          expect(() => memoized()).toThrow()
+        })
+      })
+    })
+  })
+})
