@@ -88,9 +88,40 @@ describe('memoize', () => {
     testOneCall(function arrangeAndAct() {
       const fn = jest.fn((args) => args)
       const memoized = memoize(fn)
-      const args = { f: () => {}, o: {} }
+      const args = { n: 1, f: () => {}, o: {} }
       const a = memoized({ ...args, n: 1 })
-      const b = memoized({ n: 1, ...args })
+      const b = memoized({ ...args })
+      return { fn, a, b }
+    })
+  })
+  describe('5   1       same       change-one   same                   primitive          another', () => {
+    testTwoCalls(function arrangeAndAct() {
+      const fn = jest.fn((args) => args)
+      const memoized = memoize(fn)
+      const a = memoized({ n: 1 })
+      const b = memoized({ n: 2 })
+      return { fn, a, b }
+    })
+  })
+  describe('6   3       same       one-more     last                   objectLike         same', () => {
+    testTwoCalls(function arrangeAndAct() {
+      const fn = jest.fn((args) => args)
+      const memoized = memoize(fn)
+      const args = { f: () => {}, o: {}, n: 1 }
+      const a = memoized({ ...args })
+      const b = memoized({ ...args, d: new Date() })
+      return { fn, a, b }
+    })
+  })
+  describe('7   3       shuffle    one-more     last                   undefined          another', () => {
+    testTwoCalls(function arrangeAndAct() {
+      const fn = jest.fn((args) => args)
+      const memoized = memoize(fn)
+      const f = () => {}
+      const o = []
+      const n = 1
+      const a = memoized({ f, o, n })
+      const b = memoized({ o, n, f, u: undefined })
       return { fn, a, b }
     })
   })
