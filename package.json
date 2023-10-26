@@ -6,7 +6,8 @@
   "scripts": {
     "test": "jest",
     "comb": "pict src/index.pict /e:src/index.pict.rows | tee /tmp/pict.rows | nl -v -1 | column -t | sed -r 's/-1/#/g' && mv /tmp/pict.rows src/index.pict.rows `# see https://github.com/microsoft/pict`",
-    "build": "npm run eslint . && prettier -c . && jest && mkdir -p dist && cp -v src/index.js dist/ && cp -v src/Chain.js dist/ && cp -v src/Fork.js dist/",
+    "build": "rm -rf dist && npm run eslint . && prettier -c . && jest && mkdir -p dist && cp -v src/index.js dist/ && cp -v src/Chain.js dist/ && cp -v src/Fork.js dist/ && node scripts/prepare.js",
+    "deploy": "node scripts/validate.js && cd dist && npm publish",
     "eslint": "eslint --ignore-path=.gitignore",
     "efix": "npm run eslint -- --fix .",
     "prettier": "prettier --write ."
@@ -93,6 +94,7 @@
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-jest": "^27.4.3",
     "eslint-plugin-prettier": "^5.0.1",
+    "invariant": "^2.2.4",
     "jest": "^29.7.0",
     "prettier": "^3.0.3"
   }
