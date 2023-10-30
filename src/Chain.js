@@ -4,20 +4,6 @@ function Chain() {
   this.store = new Fork()
 }
 Object.assign(Chain.prototype, {
-  has(args) {
-    const keys = Object.keys(args).sort()
-    const token = JSON.stringify(keys)
-    const argValues = keys.map((key) => args[key])
-    argValues.unshift(token)
-    for (let index = 0, acc = this.store; index < argValues.length; index++) {
-      const arg = argValues[index]
-      if (!acc.has(arg)) {
-        return false
-      }
-      acc = acc.get(arg)
-    }
-    return true
-  },
   set(args, value) {
     const keys = Object.keys(args).sort()
     const token = JSON.stringify(keys)
@@ -44,7 +30,7 @@ Object.assign(Chain.prototype, {
     for (let index = 0, acc = this.store; index < argValues.length; index++) {
       const arg = argValues[index]
       if (!acc.has(arg)) {
-        throw new Error(`No value for args: ${JSON.stringify(args)}`)
+        return undefined
       }
       acc = acc.get(arg)
       get = () => acc.get(arg)
