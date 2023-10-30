@@ -139,3 +139,18 @@ describe('memoize', () => {
     })
   })
 })
+
+describe('memoize', () => {
+  describe('hit counter', () => {
+    it('should return hit counter', () => {
+      const memoized = memoize(() => {})
+      const hits = [{}, {}, { u: undefined }, {}, { u: undefined }].map(
+        (arg) => {
+          memoized(arg)
+          return memoized.hits()
+        },
+      )
+      expect(hits).toEqual([0, 1, 1, 2, 3])
+    })
+  })
+})
