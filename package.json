@@ -12,6 +12,7 @@
     "prettier": "prettier --write ."
   },
   "files": [
+    "src/index.d.ts",
     "src/Chain.js",
     "src/Fork.js"
   ],
