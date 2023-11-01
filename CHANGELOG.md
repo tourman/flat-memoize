@@ -1,5 +1,10 @@
+- [1.1.0](#110)
 - [1.0.2](#102)
 - [1.0.1](#101)
+
+# 1.1.0
+
+- Just refactoring the deployment (no API changes).
 
 # 1.0.2
 
