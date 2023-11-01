@@ -10,7 +10,7 @@ const readFile = util.promisify(fs.readFile)
 
 ;(async () => {
   const json = JSON.parse(
-    await readFile(path.resolve(__dirname, '../dist/package.json'), 'utf8'),
+    await readFile(path.resolve(__dirname, '../package.json'), 'utf8'),
   )
   const { stdout: rawTags } = await exec('git tag --points-at HEAD')
   const tags = rawTags.trim().split('\n')

@@ -2,16 +2,19 @@
   "name": "flat-memoize",
   "version": "1.0.2",
   "description": "Memoizes functions with named arguments",
-  "main": "dist/index.js",
+  "main": "src/index.js",
   "scripts": {
     "test": "jest",
     "comb": "pict src/index.pict /e:src/index.pict.rows | tee /tmp/pict.rows | nl -v -1 | column -t | sed -r 's/-1/#/g' && mv /tmp/pict.rows src/index.pict.rows `# see https://github.com/microsoft/pict`",
-    "build": "rm -rf dist && npm run eslint . && prettier -c . && jest && mkdir -p dist && cp -v src/index.js dist/ && cp -v src/Chain.js dist/ && cp -v src/Fork.js dist/ && cp -v README.md dist/ && node scripts/prepare.js",
-    "deploy": "node scripts/validate.js && cd dist && npm publish",
+    "deploy": "npm run eslint . && prettier -c . && jest && node scripts/validate.js && npm publish",
     "eslint": "eslint --ignore-path=.gitignore",
     "efix": "npm run eslint -- --fix .",
     "prettier": "prettier --write ."
   },
+  "files": [
+    "src/Chain.js",
+    "src/Fork.js"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/tourman/flat-memoize.git"
